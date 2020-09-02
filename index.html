@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fluff Coding</title>
+    <script src="assets/three.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+
+    <style>
+        body { margin: 0; 
+        overflow: hidden;
+        cursor: none;}
+        canvas { display: block; }
+      .box {
+        font-size: 40px;
+        font-weight: 100;
+        background-color: rgba(0, 0, 0, 0.25);
+        color: white;
+        padding: 20px;
+        margin-top: 20px;
+        border: none;
+      }
+      .box:hover {
+          background-color: rgba(0, 0, 0, 0.45);
+      }
+      .cursor {
+          width: 60px;
+          height: 60px;
+          background-color: rgba(0, 0, 0, 0.2);
+          border: 5px solid white;
+          border-radius: 50%;
+          position: absolute;
+          z-index: 5;
+      }
+      
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+  <body>
+      <div class="cursor" style="left:auto; top: auto; display: none;"></div>
+    <div id="app" class="" style="position: absolute">
+      <div class="row">
+        <div class="col-auto">
+            <button type="button" class="box" data-toggle="modal" data-target="#logo" style="background-color: white; color:black; cursor:none;">
+                Fluff Coding
+            </button>
+        </div>
+        <div class="col-auto" v-for="item in items">
+            <button type="button" class="box" data-toggle="modal" :data-target="'#modal'+item.id" style="cursor: none;">
+                {{item.title}}
+            </button>
+        </div>
+        <div class="col-auto">
+            <button type="button" class="box" data-toggle="modal" data-target="#contact" style="cursor: none;">
+                Contact
+            </button>
+        </div>
+        
+        <div class="modal fade" id="contact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content" style="background-color: rgba(0, 0, 0, 0.70);">
+                <div class="m-3" style="font-size:50px; font-weight:100; color: white;">
+                    Contact Us
+                </div>
+                <div class="modal-body" style="font-size:30px; color:white; font-weight: 100;">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Your message</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                    <button type="button" class="btn btn-dark mt-3 text-right" data-dismiss="modal" style=" font-weight:100; font-size:30px;">Submit</button>
+                    <br><button type="button" class="btn btn-light mt-3" data-dismiss="modal" style=" font-weight:100; font-size:30px;">Close</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+    <!-- Button trigger modal -->
+
+    </div>
+
+    <div class="modal fade" id="logo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" style="background-color: rgba(0, 0, 0, 0.70);">
+            <div class="m-3" style="font-size:50px; font-weight:100; color: white;">
+                Fluff Coding
+            </div>
+            <div class="modal-body" style="font-size:30px; color:white; font-weight: 100;">
+                We started out during the infamous coronavirus pandemic in 2020. We've grown into the biggest software house in Pakistan! Just kidding, we've gotten nowhere :(
+                <br><button type="button" class="btn btn-light mt-3" data-dismiss="modal" style=" font-weight:100; font-size:30px;">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+<div v-for="item in items">
+    <div class="modal fade" :id="'modal'+item.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" style="background-color: rgba(0, 0, 0, 0.70);">
+            <div class="m-3" style="font-size:50px; font-weight:100; color: white;">
+                {{item.title}}
+            </div>
+            <div class="modal-body" style="font-size:30px; color:white; font-weight: 100;">
+                {{item.description}}
+                <br><button type="button" class="btn btn-light mt-3" data-dismiss="modal" style=" font-weight:100; font-size:30px;">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+  
+    <script>
+        const cursor = document.querySelector('.cursor')
+
+        document.addEventListener('mousemove', e => {
+            cursor.setAttribute("style", "top: "+(e.pageY)+"px; left:"+(e.pageX)+"px;");
+            console.log(e.pageY)
+            console.log(e.pageX)
+
+        })
+    </script>
+    <script src="assets/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: [{
+                    id:1,
+                    title:"Coders who dare to imagine",
+                    description: "This is our official slogan, until we find something better."
+                },
+                {
+                    id:2,
+                    title: 'Click the boxes for details',
+                    description: "This list seems rather arbitrary, the general themes of the things listed are the following: Members, Technologies we're interested in, Some ideas reserved for the future as well as our finished/semi-finished projects!"
+                },
+                {
+                    id:3, 
+                    title: 'Abdul Saboor',
+                    description: "Abdul Saboor is the second most awesome member of fluff coding. Sounds awesome, right? It isn't.",
+                },
+                {
+                    id:4,
+                    title: 'Arduino',
+                    description: "We're both deeply interested in arduino, we're excited about all the pranks we'll do with it. Too bad the one I ordered didn't work otherwise we would've invented an awesome robot by now",
+                },
+                {
+                    id:5,
+                    title: 'IBA Karachi',
+                    description: "We study at IBA Karachi, the most prestigious instit... Nah, lets face it, it sucks!",
+                },
+                {
+                    id:6,
+                    title: 'HR-7173',
+                    description: 'This is a secret!',
+                },
+                {
+                    id:7,
+                    title: 'Django',
+                    description: "This is the web framework we both started out with. I think we made the right choice there :) It's serving us really well!",
+                },
+                {
+                    id:8,
+                    title: 'Improving Retailing',
+                    description: "This is something that I'd like to do, want to know exactly how? I'll tell you but let me call the patent office first.",
+                },
+                {
+                    id:9,
+                    title: 'Meme Marketing',
+                    description: "Meme Marketing is the first real thing we made together. Wanna see what it looks like? I'll paste a link here when it's live",
+                },
+                {
+                    id:10,
+                    title: 'Vue JS',
+                    description: "Not a lot to say here, still learning it and loving every second of it!",
+                },
+                {
+                    id:11,
+                    title: 'Fixing ERP & LMS',
+                    description: "I think IBA uses words like ERP, LMS to showcase how sophisticated its IT systems are. In reality, these systems are a real pain in the ass and I dread every second I have to spend on them. That's the end of my rant, to avoid using these pieces of crap, I wanna make my own, we'll see if we can do it.",
+                },
+                {
+                    id:12,
+                    title: 'Shafiq Clinic',
+                    description: "We made a simple app for a cardiology clinic. It does what it's supposed to, nothing too special.",
+                },
+                {
+                    id:14,
+                    title: 'Tutorials',
+                    description: "We plan to make some tutorials showcasing some of the stuff we've done that isn't documented well",
+                },
+                {
+                    id:15,
+                    title: 'Admission Help',
+                    description: "I plan to study admission patterns around the world, and automate the process for the ease of the students. Doesn't make sense? Nobody cares.",
+                },
+                {
+                    id:16,
+                    title: 'TKINTER',
+                    description: "Saboor used TKINTER to make a retail software, apparently there isn't much you can do about the UI!",
+                },
+                {
+                    id:17,
+                    title: 'The Lit Source',
+                    description: "The Lit Source is an publication we're maintaining. It can be seen live at http://www.thelitsource.com",
+                },
+                {
+                    id:18,
+                    title: 'Python',
+                    description: "We love python. What's not to love? Except for the fact that it's not javascript.",
+                },
+                {
+                    id:19,
+                    title: 'Muhammad Mashood',
+                    description: 'No words needed.',
+                },
+                {
+                    id:20,
+                    title: 'Electron JS',
+                    description: "We're gonna start off our desktop apps with Electron, let's see where that takes us!",
+                },
+                {
+                    id:21,
+                    title: 'HTML/CSS (God Bless Bootstrap)',
+                    description: "We don't do much, we're just spoiled by some awesome libraries!",
+                },
+                {
+                    id:22,
+                    title: 'Three JS',
+                    description: "This one really excites me, This website uses a little bit of Three.JS, sorry if this website looks terrible to you (you have a potato pc or a potato browser).",
+                },
+                {
+                    id: 23,
+                    title: 'Javascript',
+                    description: "Javascript is awesome!"
+                }
+                ]
+            }
+        });
+    </script>  
+</body>
+</html>
